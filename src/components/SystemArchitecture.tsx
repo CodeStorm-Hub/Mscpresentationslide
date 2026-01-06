@@ -51,7 +51,7 @@ export function SystemArchitecture() {
         {/* Backend Services */}
         <div className="mb-6">
           <h3 className="text-sm font-bold text-slate-700 mb-3 text-center">Backend Services (Microservices)</h3>
-          <div className="grid grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             {[
               { name: 'User Service', color: 'from-orange-500 to-orange-600' },
               { name: 'Property Service', color: 'from-red-500 to-red-600' },
@@ -64,7 +64,7 @@ export function SystemArchitecture() {
               </div>
             ))}
           </div>
-          <div className="grid grid-cols-4 gap-3 mt-3">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-3">
             {[
               { name: 'Document Service', color: 'from-teal-500 to-teal-600' },
               { name: 'Verification Service', color: 'from-cyan-500 to-cyan-600' },
@@ -87,23 +87,23 @@ export function SystemArchitecture() {
         {/* Data Layer */}
         <div>
           <h3 className="text-sm font-bold text-slate-700 mb-3 text-center">Data & Infrastructure Layer</h3>
-          <div className="flex justify-center gap-4">
-            <div className="bg-gradient-to-br from-slate-600 to-slate-700 rounded-lg p-3 w-36 text-white text-center shadow-md">
+          <div className="flex flex-wrap justify-center gap-4">
+            <div className="bg-gradient-to-br from-slate-600 to-slate-700 rounded-lg p-3 w-full sm:w-36 text-white text-center shadow-md">
               <Database className="w-6 h-6 mx-auto mb-1" />
               <div className="text-xs font-bold">PostgreSQL</div>
               <div className="text-xs text-slate-300">Primary DB</div>
             </div>
-            <div className="bg-gradient-to-br from-slate-600 to-slate-700 rounded-lg p-3 w-36 text-white text-center shadow-md">
+            <div className="bg-gradient-to-br from-slate-600 to-slate-700 rounded-lg p-3 w-full sm:w-36 text-white text-center shadow-md">
               <Database className="w-6 h-6 mx-auto mb-1" />
               <div className="text-xs font-bold">MongoDB</div>
               <div className="text-xs text-slate-300">Documents</div>
             </div>
-            <div className="bg-gradient-to-br from-slate-600 to-slate-700 rounded-lg p-3 w-36 text-white text-center shadow-md">
+            <div className="bg-gradient-to-br from-slate-600 to-slate-700 rounded-lg p-3 w-full sm:w-36 text-white text-center shadow-md">
               <Cloud className="w-6 h-6 mx-auto mb-1" />
               <div className="text-xs font-bold">AWS S3</div>
               <div className="text-xs text-slate-300">File Storage</div>
             </div>
-            <div className="bg-gradient-to-br from-slate-600 to-slate-700 rounded-lg p-3 w-36 text-white text-center shadow-md">
+            <div className="bg-gradient-to-br from-slate-600 to-slate-700 rounded-lg p-3 w-full sm:w-36 text-white text-center shadow-md">
               <Shield className="w-6 h-6 mx-auto mb-1" />
               <div className="text-xs font-bold">Redis Cache</div>
               <div className="text-xs text-slate-300">Performance</div>

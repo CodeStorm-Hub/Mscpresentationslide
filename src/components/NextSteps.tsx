@@ -45,7 +45,7 @@ export function NextSteps() {
         </div>
 
         {/* Steps */}
-        <div className="grid grid-cols-4 gap-6 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
           {steps.map((step, idx) => {
             const Icon = step.icon;
             return (
@@ -70,7 +70,7 @@ export function NextSteps() {
             <p className="text-slate-600">Contact CodeStorm Hub to discuss your project</p>
           </div>
 
-          <div className="grid grid-cols-2 gap-6 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 text-center">
               <Mail className="w-10 h-10 text-blue-600 mx-auto mb-3" />
               <h4 className="font-bold text-slate-800 mb-2">Email Us</h4>
