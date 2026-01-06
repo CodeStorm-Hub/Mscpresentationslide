@@ -2,62 +2,44 @@ export function ERDiagram() {
   const entities = [
     {
       name: 'Users',
-      x: 50,
-      y: 30,
-      fields: ['id', 'email', 'role', 'verified', 'created_at']
+      fields: ['id', 'email', 'role', 'verified', 'created_at'],
+      relationships: ['Properties (1:N)', 'Agents (1:1)', 'Messages (1:N)']
     },
     {
       name: 'Properties',
-      x: 350,
-      y: 30,
-      fields: ['id', 'title', 'type', 'price', 'status', 'owner_id']
+      fields: ['id', 'title', 'type', 'price', 'status', 'owner_id'],
+      relationships: ['Transactions (1:N)', 'Documents (1:N)', 'Investments (1:N)', 'Valuations (1:N)']
     },
     {
       name: 'Agents',
-      x: 50,
-      y: 200,
-      fields: ['id', 'user_id', 'ura_cert', 'rating', 'verified']
+      fields: ['id', 'user_id', 'ura_cert', 'rating', 'verified'],
+      relationships: []
     },
     {
       name: 'Transactions',
-      x: 350,
-      y: 200,
-      fields: ['id', 'property_id', 'buyer_id', 'amount', 'status']
+      fields: ['id', 'property_id', 'buyer_id', 'amount', 'status'],
+      relationships: []
     },
     {
       name: 'Documents',
-      x: 650,
-      y: 30,
-      fields: ['id', 'property_id', 'type', 'url', 'verified']
+      fields: ['id', 'property_id', 'type', 'url', 'verified'],
+      relationships: []
     },
     {
       name: 'Messages',
-      x: 650,
-      y: 200,
-      fields: ['id', 'sender_id', 'receiver_id', 'content', 'sent_at']
+      fields: ['id', 'sender_id', 'receiver_id', 'content', 'sent_at'],
+      relationships: []
     },
     {
       name: 'Investments',
-      x: 200,
-      y: 370,
-      fields: ['id', 'investor_id', 'property_id', 'amount', 'roi']
+      fields: ['id', 'investor_id', 'property_id', 'amount', 'roi'],
+      relationships: []
     },
     {
       name: 'Valuations',
-      x: 500,
-      y: 370,
-      fields: ['id', 'property_id', 'value', 'date', 'appraiser_id']
+      fields: ['id', 'property_id', 'value', 'date', 'appraiser_id'],
+      relationships: []
     }
-  ];
-
-  const relationships = [
-    { from: 0, to: 1, label: '1:N' }, // Users to Properties
-    { from: 0, to: 2, label: '1:1' }, // Users to Agents
-    { from: 1, to: 3, label: '1:N' }, // Properties to Transactions
-    { from: 1, to: 4, label: '1:N' }, // Properties to Documents
-    { from: 0, to: 5, label: '1:N' }, // Users to Messages
-    { from: 1, to: 6, label: '1:N' }, // Properties to Investments
-    { from: 1, to: 7, label: '1:N' }  // Properties to Valuations
   ];
 
   return (
@@ -69,91 +51,87 @@ export function ERDiagram() {
         <p className="text-slate-600 mt-2">Database schema and relationships</p>
       </div>
 
-      {/* Scrollable ERD Canvas */}
-      <div className="flex-1 overflow-auto">
-        <div className="bg-white rounded-xl shadow-lg p-6 relative min-h-[550px]">
-          <svg className="absolute inset-0 w-full h-full" style={{ zIndex: 1 }}>
-            {/* Draw Relationships */}
-            {relationships.map((rel, idx) => {
-              const fromEntity = entities[rel.from];
-              const toEntity = entities[rel.to];
-              const x1 = fromEntity.x + 120;
-              const y1 = fromEntity.y + 60;
-              const x2 = toEntity.x + 120;
-              const y2 = toEntity.y + 60;
-              
-              return (
-                <g key={idx}>
-                  <line
-                    x1={x1}
-                    y1={y1}
-                    x2={x2}
-                    y2={y2}
-                    stroke="#94a3b8"
-                    strokeWidth="2"
-                    strokeDasharray="5,5"
-                  />
-                  <text
-                    x={(x1 + x2) / 2}
-                    y={(y1 + y2) / 2}
-                    fill="#64748b"
-                    fontSize="10"
-                    fontWeight="bold"
-                    textAnchor="middle"
-                  >
-                    {rel.label}
-                  </text>
-                </g>
-              );
-            })}
-          </svg>
+      {/* Scrollable ERD Content */}
+      <div className="flex-1 overflow-y-auto pr-2">
+        <div className="bg-white rounded-xl shadow-lg p-6">
+          {/* Core Entities Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-6">
+            {entities.map((entity, idx) => (
+              <div
+                key={idx}
+                className="bg-white border-2 border-blue-600 rounded-lg shadow-md hover:shadow-xl transition-shadow"
+              >
+                {/* Entity Header */}
+                <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-2 rounded-t-md">
+                  <h3 className="font-bold text-sm text-center">{entity.name}</h3>
+                </div>
 
-          {/* Draw Entities */}
-          {entities.map((entity, idx) => (
-            <div
-              key={idx}
-              className="absolute bg-white border-2 border-blue-600 rounded-lg shadow-md"
-              style={{
-                left: `${entity.x}px`,
-                top: `${entity.y}px`,
-                width: '240px',
-                zIndex: 2
-              }}
-            >
-              {/* Entity Header */}
-              <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-2 rounded-t-md">
-                <h3 className="font-bold text-sm text-center">{entity.name}</h3>
-              </div>
+                {/* Entity Fields */}
+                <div className="p-3 space-y-1.5">
+                  {entity.fields.map((field, fieldIdx) => (
+                    <div key={fieldIdx} className="flex items-center gap-2 text-xs">
+                      <div className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${fieldIdx === 0 ? 'bg-yellow-400' : 'bg-slate-300'}`}></div>
+                      <span className="text-slate-700 font-mono truncate">{field}</span>
+                      {fieldIdx === 0 && <span className="text-yellow-600 font-bold text-xs ml-auto">PK</span>}
+                      {field.endsWith('_id') && <span className="text-blue-600 font-bold text-xs ml-auto">FK</span>}
+                    </div>
+                  ))}
+                </div>
 
-              {/* Entity Fields */}
-              <div className="p-2 space-y-1">
-                {entity.fields.map((field, fieldIdx) => (
-                  <div key={fieldIdx} className="flex items-center gap-2 text-xs">
-                    <div className={`w-3 h-3 rounded-full ${fieldIdx === 0 ? 'bg-yellow-400' : 'bg-slate-300'}`}></div>
-                    <span className="text-slate-700 font-mono">{field}</span>
-                    {fieldIdx === 0 && <span className="text-yellow-600 font-bold text-xs">PK</span>}
-                    {field.endsWith('_id') && <span className="text-blue-600 font-bold text-xs">FK</span>}
+                {/* Relationships */}
+                {entity.relationships.length > 0 && (
+                  <div className="px-3 pb-3 pt-2 border-t border-slate-200">
+                    <div className="text-xs font-semibold text-slate-600 mb-1">Related To:</div>
+                    {entity.relationships.map((rel, relIdx) => (
+                      <div key={relIdx} className="text-xs text-slate-500 flex items-center gap-1">
+                        <span className="text-green-600">→</span>
+                        <span>{rel}</span>
+                      </div>
+                    ))}
                   </div>
-                ))}
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Database Relationships Summary */}
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-200">
+            <h4 className="font-bold text-slate-800 mb-3 text-sm">Key Relationships</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+              <div className="flex items-start gap-2">
+                <span className="text-blue-600 font-bold">→</span>
+                <span className="text-slate-700"><strong>Users</strong> have many <strong>Properties</strong> (owner relationship)</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <span className="text-blue-600 font-bold">→</span>
+                <span className="text-slate-700"><strong>Properties</strong> have many <strong>Transactions</strong></span>
+              </div>
+              <div className="flex items-start gap-2">
+                <span className="text-blue-600 font-bold">→</span>
+                <span className="text-slate-700"><strong>Properties</strong> have many <strong>Documents</strong></span>
+              </div>
+              <div className="flex items-start gap-2">
+                <span className="text-blue-600 font-bold">→</span>
+                <span className="text-slate-700"><strong>Users</strong> can be <strong>Agents</strong> (one-to-one)</span>
               </div>
             </div>
-          ))}
+          </div>
         </div>
       </div>
 
       {/* Legend */}
-      <div className="mt-4 bg-white rounded-lg p-3 shadow-md flex items-center justify-center gap-8 flex-shrink-0">
+      <div className="mt-4 bg-white rounded-lg p-3 shadow-md flex flex-wrap items-center justify-center gap-6 flex-shrink-0">
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
+          <div className="w-2.5 h-2.5 rounded-full bg-yellow-400"></div>
           <span className="text-xs text-slate-700">Primary Key</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-slate-300"></div>
+          <div className="w-2.5 h-2.5 rounded-full bg-slate-300"></div>
           <span className="text-xs text-slate-700">Attribute</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-8 h-0.5 bg-slate-400" style={{ borderTop: '2px dashed #94a3b8' }}></div>
-          <span className="text-xs text-slate-700">Relationship</span>
+          <span className="text-blue-600 font-bold">FK</span>
+          <span className="text-xs text-slate-700">Foreign Key</span>
         </div>
       </div>
 

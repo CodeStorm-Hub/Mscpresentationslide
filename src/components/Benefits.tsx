@@ -83,7 +83,7 @@ export function Benefits() {
       {/* Scrollable Content */}
       <div className="flex-1 overflow-y-auto pr-2 space-y-6">
         {/* Benefits Grid */}
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {benefits.map((benefit, idx) => {
             const Icon = benefit.icon;
             const colors = colorMap[benefit.color];
@@ -106,7 +106,7 @@ export function Benefits() {
         {/* ROI Projection */}
         <div className="bg-white rounded-xl shadow-lg p-6">
           <h3 className="font-bold text-slate-800 mb-4 text-center text-lg">Projected ROI & Impact</h3>
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="text-center">
               <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-lg p-4 mb-2">
                 <div className="text-3xl font-bold">150%</div>

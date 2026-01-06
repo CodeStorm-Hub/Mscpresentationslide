@@ -18,7 +18,7 @@ export function ProjectOverview() {
       </div>
 
       {/* Key Objectives Grid */}
-      <div className="grid grid-cols-2 gap-6 flex-1">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1">
         <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
           <div className="flex items-start gap-4">
             <div className="bg-blue-100 p-3 rounded-lg">

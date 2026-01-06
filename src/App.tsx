@@ -46,7 +46,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col items-center justify-center p-4">
       {/* Slide Container */}
-      <div className="w-full max-w-7xl aspect-[16/9] bg-white rounded-xl shadow-2xl overflow-hidden relative">
+      <div className="w-full max-w-7xl aspect-[16/9] bg-white rounded-xl shadow-2xl overflow-auto relative">
         {slides[currentSlide]}
       </div>
 

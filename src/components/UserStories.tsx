@@ -96,7 +96,7 @@ export function UserStories() {
       {/* Scrollable Content */}
       <div className="flex-1 overflow-y-auto pr-2 space-y-6">
         {/* User Stories Grid */}
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {userStories.map((user, index) => {
             const Icon = user.icon;
             const colors = colorMap[user.color];
